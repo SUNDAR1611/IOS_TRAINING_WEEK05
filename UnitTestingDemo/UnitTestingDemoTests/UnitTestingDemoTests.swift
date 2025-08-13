@@ -43,4 +43,11 @@ final class UnitTestingDemoTests: XCTestCase {
         //Assert
              XCTAssert(sut.tasks.count == initialTaskCount)
     }
+    func test_addtask_performance() {
+        measure{
+            for i in 0..<1000 {
+                sut.addTask(name: "Test task \(i)")
+            }
+        }
+    }
 }

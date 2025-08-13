@@ -24,3 +24,4 @@ final class CounterViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.count, 0, "Count should be 0 after reset")
     }
 }
+
