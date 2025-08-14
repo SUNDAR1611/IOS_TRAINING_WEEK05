@@ -55,8 +55,7 @@ struct ContentView: View {
 
     func loadPage() {
         var enteredText = urlText.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        // If user didn't type "http", treat it as a search term
+     
         if !enteredText.hasPrefix("http") {
             enteredText = "https://www.google.com/search?q=" + enteredText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         }
