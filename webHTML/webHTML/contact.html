@@ -1,57 +1,107 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
-    <meta charset="UTF-8">
-        <meta name = "viewport" content = "width=device-width,initial-scale= 0.8">
-    <title>Contact Form</title>
-    <style>
-        *{
-            margin-bottom: 20px;
-            margin-top: 20px;
-            
-        }
-        body { font-family: Arial; margin: 20px; }
-        h2 { text-align: center; }
-        input, textarea {
-            width: 89%; padding: 10px; margin-top: 16px;
-            border: 2px solid #ccc; border-radius: 5px;
-        }
-        button {
-            margin-top: 10px; padding: 10px; width: 50%;display: block;        
-            margin-left: auto;
-            margin-right: auto;
-            background-color: #28a745; border: none; color: white;
-            border-radius: 5px; cursor: pointer;
-        }
-        button:hover { background-color: #218838; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Form</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .container {
+        background-color: rgba(255, 255, 255, 0.95);
+        color: #333;
+        padding: 30px;
+        border-radius: 12px;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0px 6px 15px rgba(0,0,0,0.2);
+        text-align: center; 
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        color: #2575fc;
+    }
+
+    label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 8px;
+        color: #444;
+        text-align: left;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 16px;
+        border: 2px solid #ccc;
+        border-radius: 6px;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.3s ease;
+    }
+
+    input:focus, textarea:focus {
+        border-color: #2575fc;
+        box-shadow: 0px 0px 5px rgba(37, 117, 252, 0.5);
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background-color: #2575fc;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #1a5fd0;
+    }
+</style>
 </head>
 <body>
-    <h2>Contact Us</h2>
-    <form onsubmit="sendDataToSwift(); return false;">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" placeholder="Enter your name"><br>
+    <div class="container">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter your name" required>
 
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" placeholder="Enter your email"><br>
-        <label for="message">Message:</label><br>
-        <textarea id="message" rows="4" placeholder="Your message..."></textarea>
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
 
-        <button type="submit">Submit</button>
-    </form>
+            <label for="message">Message:</label>
+            <textarea id="message" rows="4" placeholder="Your message..." required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 
     <script>
-        function sendDataToSwift() {
-            let name = document.getElementById('name').value;
-            let email = document.getElementById('email').value;
-            let message = document.getElementById('message').value;
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-            let formData = { name: name, email: email, message: message };
+            let name = encodeURIComponent(document.getElementById('name').value);
+            let email = encodeURIComponent(document.getElementById('email').value);
+            let message = encodeURIComponent(document.getElementById('message').value);
 
-            window.webkit.messageHandlers.contactForm.postMessage(formData);
-        }
+            window.location.href = `thankyou.html?name=${name}&email=${email}&message=${message}`;
+        });
     </script>
 </body>
 </html>
-

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=0.8">
+<title>Form Submission</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: linear-gradient(135deg, #6dd5ed, #2193b0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .container {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 90%;
+        max-width: 400px;
+    }
+    h2 {
+        color: #2193b0;
+        margin-bottom: 20px;
+    }
+    p {
+        font-size: 18px;
+        color: #333;
+        margin: 10px 0;
+    }
+    strong {
+        color: #444;
+    }
+    button {
+        margin-top: 20px;
+        padding: 12px 25px;
+        background: linear-gradient(90deg, #ff9966, #ff5e62);
+        color: white;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.3s;
+    }
+    button:hover {
+        background: linear-gradient(90deg, #ff5e62, #ff9966);
+        transform: scale(1.05);
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h2>Form Submission Details</h2>
+        <p><strong>Name:</strong> <span id="displayName"></span></p>
+        <p><strong>Email:</strong> <span id="displayEmail"></span></p>
+        <p><strong>Message:</strong> <span id="displayMessage"></span></p>
+
+        <button onclick="goBack()">Back to Contact Form</button>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        document.getElementById('displayName').textContent = params.get('name');
+        document.getElementById('displayEmail').textContent = params.get('email');
+        document.getElementById('displayMessage').textContent = params.get('message');
+
+        function goBack() {
+            window.location.href = 'contact.html';
+        }
+    </script>
+</body>
+</html>

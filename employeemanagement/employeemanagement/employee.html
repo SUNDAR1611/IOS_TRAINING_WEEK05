@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Management</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .container {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 400px;
+        box-shadow: 0px 6px 15px rgba(0,0,0,0.2);
+        text-align: center;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: bold;
+        text-align: left;
+        color: #444;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 14px;
+        border: 2px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        outline: none;
+    }
+
+    input:focus {
+        border-color: #4facfe;
+        box-shadow: 0px 0px 5px rgba(79, 172, 254, 0.5);
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background: #4facfe;
+        border: none;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #3b8be3;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h2>Employee Form</h2>
+        <form id="employeeForm">
+            <label for="empName">Name:</label>
+            <input type="text" id="empName" placeholder="Enter employee name" required>
+
+            <label for="empId">Employee ID:</label>
+            <input type="text" id="empId" placeholder="Enter employee ID" required>
+
+            <label for="empDept">Department:</label>
+            <input type="text" id="empDept" placeholder="Enter department" required>
+
+            <label for="empAge">Age:</label>
+            <input type="number" id="empAge" placeholder="Enter age" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('employeeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let data = {
+                name: document.getElementById('empName').value,
+                id: document.getElementById('empId').value,
+                dept: document.getElementById('empDept').value,
+                age: document.getElementById('empAge').value
+            };
+
+            // Send data to Swift
+            window.webkit.messageHandlers.employeeForm.postMessage(data);
+        });
+    </script>
+</body>
+</html>
+
